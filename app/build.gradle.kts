@@ -16,8 +16,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "ODOO_SERVER", "\"https://odoo-stg.linklusion.co.jp/\"")
-        buildConfigField("String", "ODOO_API_KEY", "\"AKK3FNOAA9TDXO7PM2EF9VNKGWOICVS5\"")
+        buildConfigField("String", "ODOO_SERVER", "server api base url")
+        buildConfigField("String", "ODOO_API_KEY", "\"server api key here\"")
     }
     buildFeatures {
         dataBinding = true
