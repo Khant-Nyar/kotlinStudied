@@ -10,7 +10,8 @@ import com.khantnyar.recyclerview.R
 import com.khantnyar.recyclerview.models.Customers
 
 class CustomerAdapter(
-    private var data: List<Customers>
+    private var data: List<Customers>,
+    private var showUnchecked: Boolean = true
 ):RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
@@ -22,11 +23,15 @@ class CustomerAdapter(
     override fun onBindViewHolder(holder: CustomerViewHolder, position: Int) {
         val customer = data[position]
         val order = customer.sale_order_ids?.mapNotNull { it?.id } ?: emptyList()
-        holder.bind(customer,order)
+        holder.bind(customer,order,showUnchecked)
     }
 
     fun updateData(newData: List<Customers>, saleOrderIds: List<Int>) {
         data = newData
+        notifyDataSetChanged()
+    }
+    fun setShowUnchecked(show: Boolean) {
+        showUnchecked = show
         notifyDataSetChanged()
     }
 
@@ -40,12 +45,21 @@ class CustomerAdapter(
         private val ownerNameTextView: TextView = itemView.findViewById(R.id.tvOwnerName)
         private val orderCheckBox: CheckBox = itemView.findViewById(R.id.tvOrderChecked)
 
-        fun bind(customers: Customers,orders:List<Int>){
+        fun bind(customers: Customers, orders: List<Int>, show: Boolean){
             displayNameTextView.text=customers.display_name
             ownerNameTextView.text=customers.owner_name
             val saleOrderIds = customers.sale_order_ids?.map { it?.id }
             val hasDesiredOrder = saleOrderIds?.any { it in orders } ?: false
             orderCheckBox.isChecked = hasDesiredOrder
+            if(show){
+                val saleOrderIds = customers.sale_order_ids?.map { it?.id }
+                val hasDesiredOrder = saleOrderIds?.any { it in orders } ?: false
+                orderCheckBox.isChecked = hasDesiredOrder
+                orderCheckBox.visibility = View.VISIBLE
+            }else{
+                orderCheckBox.visibility = View.GONE
+
+            }
         }
     }
 }

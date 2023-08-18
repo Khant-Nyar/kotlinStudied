@@ -73,7 +73,7 @@ class CustomerActivity : AppCompatActivity() {
         getAllCustomers()
     }
 
-    private fun getAllCustomers(invoiceStatus:String? = "") {
+    private fun getAllCustomers(invoiceStatus: String? = "") {
         val todayDate = DateAndTimeUtil.getCurrentDayOfWeek()
         val fields = "['name','display_name','active','email','phone','customer_status','debit_limit','employee_ids','user_id','owner_name','sale_order_ids']"
         val domain = "[('customer_status','=','Active'),('name', 'not ilike', 'copy'),('day','=','$todayDate')]"//$todayDate //('customer_status','=','Active'),
@@ -168,9 +168,11 @@ class CustomerActivity : AppCompatActivity() {
         if (button == binding.btnBeforeRing) {
             setColorsAndDrawable(binding.btnBeforeRing, true)
             setColorsAndDrawable(binding.btnAfterRing, false)
+            customerAdapter.setShowUnchecked(true)
         } else if (button == binding.btnAfterRing) {
             setColorsAndDrawable(binding.btnAfterRing, true)
             setColorsAndDrawable(binding.btnBeforeRing, false)
+            customerAdapter.setShowUnchecked(false)
         }
     }
     private fun navbar () {
