@@ -1,4 +1,4 @@
-package com.khantnyar.kotlinstudied
+package com.khantnyar.recyclerview
 
 import org.junit.Test
 

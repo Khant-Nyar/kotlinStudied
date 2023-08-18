@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "kotlinStudied"
+rootProject.name = "RecyclerView"
 include(":app")
- 

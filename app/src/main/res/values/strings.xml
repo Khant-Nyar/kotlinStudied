@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">kotlinStudied</string>
+    <string name="app_name">RecyclerView</string>
+    <string name="to_call">ဖုန်ခေါ်ရန်</string>
+    <string name="ordered">မှာထားပြီး</string>
+    <string name="customer_id">XML-002</string>
+    <string name="customer_name">Khat Sit Paing</string>
 </resources>
